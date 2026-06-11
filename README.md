@@ -2,120 +2,127 @@
 
 ## 📌 Overview
 
-Forest fires cause severe environmental damage, and early detection is critical to prevent large-scale disasters.  
-This project develops an AI-powered **Forest Fire and Smoke Detection  System** that analyzes aerial/drone imagery to identify early signs of **fire and smoke**.
+Forest fires are one of the major environmental threats causing damage to forests, wildlife, and human life. Early detection of smoke and fire can help reduce disaster impact.
 
-The system is designed with a safety-first approach:
+This project builds an AI-powered **Forest Fire and Smoke Detection System** that uses aerial/forest imagery to detect early signs of smoke and fire.
+
+The system follows a safety-first approach:
 
 - ✅ False alarms are acceptable
-- ❌ Missing an actual fire is highly undesirable
+- ❌ Missing an actual forest fire is not acceptable
 
-Instead of optimizing only accuracy, the model focuses on **high recall** to detect potential fire events as early as possible.
-
-
----
-
-## 🚀 Features
-
-- Upload forest/aerial images through a Streamlit web application
-- Automatic Computer Vision feature extraction
-- Smoke and fire pattern analysis
-- Fire probability prediction
-- Early warning alert system
-- Optimized for rare fire event detection
-
+Therefore, the model focuses on improving **Recall** rather than only maximizing accuracy.
 
 ---
 
-## 🧠 Problem Statement
+# 🚀 Features
 
-Traditional fire detection systems often fail because they:
-
-- Treat smoke and fire patterns incorrectly
-- Ignore class imbalance
-- Depend only on accuracy
-- Miss early-stage fire indicators
-
-This project focuses on identifying weak but important visual signals from aerial images.
-
+- Upload forest/drone images
+- Automatic image feature extraction using Computer Vision
+- Fire and smoke pattern analysis
+- Early fire risk prediction
+- Fire probability score generation
+- Streamlit based interactive dashboard
+- Recall-focused decision threshold
 
 ---
 
-## 🛰️ Computer Vision Features Extracted
+# 🧠 Problem Statement
 
-The following image-based features are extracted using OpenCV:
+Traditional fire detection systems face challenges such as:
 
-| Feature | Description |
-|-------|-------------|
-| Mean Red | Average red channel intensity |
-| Mean Green | Average green channel intensity |
-| Mean Blue | Average blue channel intensity |
+- Confusing smoke with clouds or fog
+- Missing early-stage fires
+- Handling rare fire events
+- Class imbalance problems
+- Over-dependence on accuracy
+
+This project focuses on detecting weak visual fire signals from aerial images.
+
+---
+
+# 🛰️ Computer Vision Features
+
+The following features are extracted from images:
+
+| Feature | Purpose |
+|--------|---------|
+| Mean Red | Measures red color intensity |
+| Mean Green | Measures vegetation/brightness |
+| Mean Blue | Measures blue channel intensity |
 | Red-Blue Ratio | Detects flame color dominance |
-| Smoke Whiteness | Measures smoke-like regions |
-| Haze Index | Detects smoky atmospheric effect |
-| Hot Pixel Fraction | Identifies flame-colored pixels |
-| Edge Density | Texture variation detection |
+| Smoke Whiteness | Identifies smoke-like regions |
+| Haze Index | Detects smoky environment |
+| Hot Pixel Fraction | Finds fire-colored pixels |
+| Edge Density | Detects texture changes |
 | Intensity STD | Brightness variation |
-| Local Contrast | Image contrast information |
-
+| Local Contrast | Measures image contrast |
 
 ---
 
-## 🏗️ System Architecture
+# 🏗️ System Architecture
 
+```
+Forest / Drone Image
 
-Forest Image / Drone Image
+        ↓
 
-            ↓
+Computer Vision Processing
+(OpenCV)
 
-Computer Vision Processing (OpenCV)
-
-            ↓
+        ↓
 
 Feature Extraction
 
-            ↓
+        ↓
 
 Machine Learning Model
 
-            ↓
+        ↓
 
-Fire Risk Prediction
+Fire Probability Prediction
 
-            ↓
+        ↓
 
-Streamlit Alert Dashboard
+Warning Generation
 
-
----
-
-## 🤖 Machine Learning Approach
-
-
-### 1. Logistic Regression Baseline
-
-Used for:
-
-- Understanding weak visual signals
-- Analyzing feature contribution
-- Studying class imbalance effects
-
-
-### 2. Gradient Boosting Classifier
-
-Final model because it:
-
-- Learns complex nonlinear patterns
-- Focuses on difficult samples
-- Handles rare fire cases better
-- Improves recall performance
-
+🔥 High Fire Alert
+⚠️ Possible Smoke
+🌲 Safe Forest
+```
 
 ---
 
-## 📊 Model Evaluation
+# 🤖 Machine Learning Approach
 
-Accuracy alone is not sufficient for this problem.
+
+## Logistic Regression Baseline
+
+Implemented to understand:
+
+- Weak visual signals
+- Feature importance
+- Class imbalance behavior
+
+
+## Gradient Boosting Classifier
+
+Used as the final model because:
+
+- Handles nonlinear relationships
+- Learns difficult fire patterns
+- Performs well on structured CV features
+- Improves rare event detection
+
+---
+
+# 📊 Evaluation Strategy
+
+Accuracy alone is not reliable for forest fire detection.
+
+Example:
+
+A model predicting "No Fire" most of the time may achieve high accuracy but fail during real disasters.
 
 Important metrics:
 
@@ -124,130 +131,190 @@ Important metrics:
 - F1 Score
 - Precision-Recall Curve
 
-
 Priority:
 
+```
 Recall > Accuracy
+```
 
-because missing a real forest fire is more dangerous than a false alert.
-
+because detecting every possible fire is more important than reducing false alarms.
 
 ---
 
-## 🛠️ Tech Stack
+# 🛠️ Technology Stack
 
 - Python
 - OpenCV
 - NumPy
 - Pandas
 - Scikit-Learn
-- Gradient Boosting
+- Gradient Boosting Classifier
 - Logistic Regression
 - Streamlit
 
-
 ---
 
-## 📂 Project Structure
+# 📂 Project Structure
 
+```
 Forest-Fire-Detection/
 
 │
-
 ├── app.py
-
+│
 ├── model.ipynb
-
+│
 ├── fire_model.pkl
-
+│
 ├── scaler.pkl
-
+│
 ├── Forest Fire Smoke Dataset.csv
-
+│
 ├── requirements.txt
-
+│
 └── README.md
 
-
+```
 
 ---
 
-## ⚙️ Installation
+# ⚙️ Installation
 
-
-Clone repository:
-
+Clone the repository:
 
 ```bash
-git clone https://github.com/Kavya2605/Forest-Fire-Smoke-Detection.git
+git clone https://github.com/Kavya2605/Forest-Fire-and-Smoke-Detection.git
+```
 
-cd Forest-Fire-Smoke-Detection
+Move into project folder:
+
+```bash
+cd Forest-Fire-and-Smoke-Detection
+```
 
 Install dependencies:
 
----
-pip install -r requirements.txt
 ```bash
+pip install -r requirements.txt
+```
 
-🏋️ Train Model
+---
+
+# 🏋️ Model Training
 
 Run:
----
+
+```bash
 python model.ipynb
+```
 
-```bash
+The training process generates:
 
-This creates:
----
+```
 fire_model.pkl
+
 scaler.pkl
+```
 
-```bash
-
-🌐 Run Streamlit Application
 ---
-streamlit run app.py
+
+# 🌐 Run Streamlit Application
+
+Start the application:
 
 ```bash
+streamlit run app.py
+```
 
-Upload a forest image and the system predicts:
+---
 
-🔥 High Fire Alert
+# 📷 Application Workflow
 
-⚠️ Possible Smoke / Early Fire
+1. Upload forest/aerial image
 
-🌲 Safe Forest
+2. Image preprocessing using OpenCV
 
-📷 Application Workflow
-User uploads aerial image
-OpenCV extracts visual features
-Features are normalized
-ML model predicts probability
-Warning level generated
+3. Extract visual features
 
-🌎 Real World Challenges Considered
-Smoke vs cloud confusion
-Changing sunlight conditions
-Fire hidden by dense smoke
-Class imbalance
-Rare event detection
+4. Normalize features
 
-Future improvements:
-CNN-based image classification
-Satellite imagery integration
-Temporal fire tracking
-Multi-sensor fusion
-Thermal camera support
+5. Predict using trained model
 
-📌 Key Learning Outcomes
-Computer Vision feature engineering
-Handling imbalanced datasets
-Recall-focused ML design
-Real-world AI safety considerations
-ML model deployment
+6. Generate alert level
 
-👩‍💻 Author
 
-Kavya Ponduru
+Output examples:
 
-AI/ML Engineer | Computer Vision | Deep Learning
+🔥 HIGH FIRE ALERT
+
+⚠️ Possible Smoke / Early Fire Detected
+
+🌲 No Fire Detected
+
+---
+
+# 🔥 Fire Detection Logic
+
+The system analyzes:
+
+### Flame Indicators
+
+- High red intensity
+- Red-blue dominance
+- Hot pixel regions
+
+
+### Smoke Indicators
+
+- White/gray regions
+- Haze patterns
+- Low contrast areas
+
+
+Combined signals improve early detection.
+
+---
+
+# 🌎 Real World Challenges Considered
+
+- Smoke vs clouds confusion
+- Different lighting conditions
+- Small fire regions
+- Hidden flames behind smoke
+- Rare fire events
+- Class imbalance
+
+---
+
+# 🚀 Future Improvements
+
+- CNN based deep learning model
+- Satellite image analysis
+- Drone video monitoring
+- Temporal fire tracking
+- Thermal image processing
+- Multi-sensor fusion
+
+---
+
+# 📌 Key Learnings
+
+- Computer Vision feature engineering
+- Image preprocessing
+- Handling imbalanced datasets
+- Recall optimization
+- Real-world AI safety system design
+- ML model deployment
+
+---
+
+# 👩‍💻 Author
+
+**Kavya Ponduru**
+
+AI/ML Engineer  
+Computer Vision | Machine Learning | Deep Learning
+
+---
+
+⭐ If you like this project, give it a star!
